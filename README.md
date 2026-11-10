@@ -65,3 +65,24 @@ enlace personas existentes y que cada foto corresponda a alguien.
 - Scroll, parallax e inclinación escriben variables CSS en un único bucle
   `requestAnimationFrame`, sin pasar por el render de React.
 - Se respeta `prefers-reduced-motion`.
+- La animación de entrada solo anima `opacity` y `transform` (la GPU la mueve
+  aunque el hilo principal esté ocupado); sin `filter`, `backdrop-filter` ni
+  `mix-blend-mode` en elementos animados.
+- La portada se pinta primero y el resto se monta en una transición de React.
+  Las secciones largas usan `content-visibility: auto`: el navegador no las
+  maqueta hasta que se acercan a la pantalla.
+- Mientras carga una foto se muestra un degradado ligero, no la ilustración SVG.
+
+## Publicación
+
+La sala se publica en **GitHub Pages**: <https://mastergamer1309.github.io/a/>
+
+Cada push a `main` ejecuta `.github/workflows/deploy.yml`: lint, tests, build y
+despliegue. Si algo falla, no se publica.
+
+Configuración inicial (una sola vez, la hace el dueño del repositorio):
+**Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+La URL pública se define en `.env` (`VITE_SITE_URL`) y se usa en las etiquetas
+para compartir (Open Graph); en GitHub Actions se toma automáticamente.
+La imagen de vista previa es `public/og.jpg` (1200 × 630).
