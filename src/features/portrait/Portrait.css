@@ -1,0 +1,33 @@
+/* Marco arqueado, ventana y retrato (galería y ficha) */
+.niche__frame {
+  position: relative; display: block; padding: 7px;
+  border-radius: 999px 999px 16px 16px;
+  background: linear-gradient(155deg, #fbe3a0 0%, #b8862e 38%, #f1d489 58%, #7a5416 100%);
+  box-shadow: 0 22px 40px -22px #000, 0 0 0 1px rgba(255, 236, 170, .25) inset;
+  transition: box-shadow .5s, transform .5s var(--ease);
+}
+.niche__btn:hover .niche__frame, .niche__btn:focus-visible .niche__frame {
+  transform: translateY(-8px);
+  box-shadow: 0 34px 50px -24px hsl(var(--h) 90% 55% / .7), 0 0 0 1px rgba(255, 236, 170, .4) inset;
+}
+.niche__btn.is-lit .niche__frame { box-shadow: 0 22px 40px -22px #000, 0 0 36px -4px rgba(255, 150, 60, .65), 0 0 0 1px rgba(255, 236, 170, .35) inset; }
+
+.niche__window { position: relative; display: block; border-radius: 999px 999px 10px 10px; overflow: hidden; aspect-ratio: 3 / 4; background: #080c18; isolation: isolate; }
+.portrait { position: absolute; inset: 0; display: block; }
+.art, .photo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.photo { object-fit: cover; opacity: 0; transition: opacity .8s; }
+.photo.ok { opacity: 1; }
+.niche__window::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .4s;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, .26), transparent 60%);
+  mix-blend-mode: soft-light;
+}
+.niche__btn:hover .niche__window::after { opacity: 1; }
+
+/* animación de rayos solo cuando el retrato está activo */
+.art__rays, .art__halo { transform-origin: 150px 190px; animation: spin 80s linear infinite; animation-play-state: paused; }
+.art__halo { animation: breathe 5s ease-in-out infinite; animation-play-state: paused; }
+.niche__btn:hover .art__rays, .niche__btn:focus-visible .art__rays, .niche__btn.is-lit .art__rays,
+.niche__btn:hover .art__halo, .niche__btn:focus-visible .art__halo, .niche__btn.is-lit .art__halo,
+.dlg .art__rays, .dlg .art__halo { animation-play-state: running; }
+.niche__btn:hover .art__rays, .niche__btn:focus-visible .art__rays { animation-duration: 24s; }

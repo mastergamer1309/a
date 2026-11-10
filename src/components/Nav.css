@@ -1,0 +1,27 @@
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid transparent;
+  transition: background .4s, backdrop-filter .4s, border-color .4s;
+}
+.nav.solid { background: rgba(6, 10, 20, .74); backdrop-filter: blur(14px); border-color: var(--line); }
+.brand {
+  display: flex; align-items: center; gap: .65rem;
+  font: 600 .8rem var(--serif); letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold-hi); text-decoration: none;
+}
+.brand svg { width: 14px; height: 19px; fill: var(--flame); filter: drop-shadow(0 0 7px var(--flame)); animation: flick 2.6s ease-in-out infinite; }
+.nav ul { display: flex; gap: clamp(.9rem, 2.6vw, 2.1rem); list-style: none; margin: 0; padding: 0; }
+.link {
+  position: relative; padding: .4rem 0; text-decoration: none;
+  font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
+  transition: color .3s;
+}
+.link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease);
+}
+.link:hover, .link.on { color: var(--ink); }
+.link:hover::after, .link.on::after { transform: scaleX(1); }
+@media (max-width: 640px) { .brand span { display: none; } .nav ul { gap: 1.1rem; } }

@@ -1,0 +1,18 @@
+/* Animaciones compartidas */
+@keyframes flick { 0%, 100% { transform: scale(1) rotate(0); opacity: 1; } 25% { transform: scale(.94, 1.06) rotate(-3deg); opacity: .92; } 55% { transform: scale(1.05, .96) rotate(2.5deg); } 80% { transform: scale(.97, 1.04) rotate(-1.5deg); opacity: .96; } }
+@keyframes flame { 0% { transform: scale(1, 1) rotate(-2deg); } 35% { transform: scale(.92, 1.08) rotate(2deg); } 70% { transform: scale(1.06, .94) rotate(-1deg); } 100% { transform: scale(.97, 1.1) rotate(1.5deg); } }
+@keyframes pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.25, 1.35); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes glow { from { opacity: .72; transform: scale(.94); } to { opacity: 1; transform: scale(1.04); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 0%, 100% { transform: scale(.94); opacity: .8; } 50% { transform: scale(1.06); opacity: 1; } }
+@keyframes twinkle { 0%, 100% { opacity: 1; transform: scale(1) rotate(0); } 50% { opacity: .55; transform: scale(.82) rotate(18deg); } }
+@keyframes sunrise { from { transform: translateY(46%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes chIn { from { opacity: 0; transform: translateY(.55em) scale(.88); filter: blur(12px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dlgIn { from { opacity: 0; transform: translateY(36px) scale(.95); } to { opacity: 1; transform: none; } }
+@keyframes cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ping { 0% { box-shadow: 0 0 0 5px var(--bg), 0 0 0 5px var(--dc); } 100% { box-shadow: 0 0 0 5px var(--bg), 0 0 0 26px transparent; } }
+@keyframes tour { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes spark { from { transform: translate(-50%, -50%) scale(1); opacity: 1; } to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0; } }
