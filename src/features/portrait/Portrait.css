@@ -31,3 +31,9 @@
 .niche__btn:hover .art__halo, .niche__btn:focus-visible .art__halo, .niche__btn.is-lit .art__halo,
 .dlg .art__rays, .dlg .art__halo { animation-play-state: running; }
 .niche__btn:hover .art__rays, .niche__btn:focus-visible .art__rays { animation-duration: 24s; }
+
+/* Relleno mientras carga una foto: el mismo sol de color que la ilustración, en un solo nodo. */
+.portrait__placeholder {
+  position: absolute; inset: 0;
+  background: radial-gradient(78% 78% at 50% 42%, hsl(var(--ph) 85% 58%), hsl(var(--ph) 62% 30%) 38%, #080c18 100%);
+}
