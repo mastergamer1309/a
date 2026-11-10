@@ -4,9 +4,9 @@
    Para añadir a alguien: copia un bloque de PEOPLE, cambia sus
    campos y listo. La sala se reconstruye sola.
 
-   FOTOS REALES: guarda la imagen como  img/<id>.jpg  (por ejemplo
-   img/augusto-sandino.jpg) y añade ese id a la lista FOTOS de abajo.
-   Se mostrará en lugar del retrato ilustrado.
+   IMÁGENES: cada persona tiene su retrato en src/assets/heroes/<id>.svg.
+   Para usar una foto real guarda  src/assets/heroes/<id>.jpg  (o .png,
+   .webp); se detecta sola y se muestra sobre el retrato ilustrado.
 
    campos:
      tipo    "martir" | "influencia"
@@ -15,10 +15,7 @@
      acc     "sombrero" | "plumas" | "boina" | "cuello" | null
      hue     0-360, color del retrato
    ============================================================ */
-window.SALA = {
-
-  // ids que ya tienen foto en img/, por ejemplo: ["augusto-sandino", "ruben-dario"]
-  FOTOS: [],
+const SALA = {
 
   ERAS: [
     { id: 1, nombre: "Pueblos originarios y Colonia", rango: "hasta 1821" },
@@ -470,3 +467,6 @@ window.SALA = {
     { anio: "1979", titulo: "19 de julio", texto: "Tras la huida de Somoza Debayle, la insurrección popular entra en Managua y termina con la dinastía.", tipo: "hist", personas: [] }
   ]
 };
+
+export const { ERAS, PEOPLE, TIMELINE } = SALA;
+export default SALA;
