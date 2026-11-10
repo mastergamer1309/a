@@ -17,8 +17,31 @@
    ============================================================ */
 window.SALA = {
 
-  // ids que ya tienen foto en img/, por ejemplo: ["augusto-sandino", "ruben-dario"]
-  FOTOS: [],
+  // Retratos locales descargados desde Wikimedia Commons/Wikipedia.
+  FOTOS: [
+    "benjamin-zeledon",
+    "augusto-sandino",
+    "rigoberto-lopez-perez",
+    "carlos-fonseca",
+    "pedro-joaquin-chamorro",
+    "leonel-rugama",
+    "gaspar-garcia-laviana",
+    "rafaela-herrera",
+    "miguel-larreynaga",
+    "jose-santos-zelaya",
+    "ruben-dario",
+    "pablo-antonio-cuadra",
+    "ernesto-cardenal",
+    "carlos-mejia-godoy",
+    "sergio-ramirez",
+    "gioconda-belli",
+    "julio-buitrago",
+    "luisa-amanda-espinoza",
+    "diriangen",
+    "nicarao",
+    "el-gueguense",
+    "san-jacinto"
+  ],
 
   ERAS: [
     { id: 1, nombre: "Pueblos originarios y Colonia", rango: "hasta 1821" },

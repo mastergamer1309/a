@@ -136,7 +136,7 @@
   function portrait(p) {
     const fotos = (window.SALA && window.SALA.FOTOS) || [];
     const photo = fotos.includes(p.id)
-      ? `<img class="photo" src="img/${p.id}.jpg" alt="Retrato de ${p.nombre}" loading="lazy" decoding="async" onload="this.classList.add('ok')" onerror="this.remove()">`
+      ? `<img class="photo photo--${p.id}" src="img/${p.id}.jpg" alt="Retrato de ${p.nombre}" loading="lazy" decoding="async" onload="this.classList.add('ok')" onerror="this.remove()">`
       : '';
     return `<span class="portrait">${art(p)}${photo}</span>`;
   }
