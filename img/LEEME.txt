@@ -1,0 +1,19 @@
+FOTOS REALES (opcional)
+=======================
+
+La sala usa retratos ilustrados por defecto. Para mostrar una fotografia real:
+
+1. Guarda la imagen en esta carpeta con el id de la persona y extension .jpg:
+
+       img/augusto-sandino.jpg
+       img/ruben-dario.jpg
+       img/rafaela-herrera.jpg
+
+   Los ids estan en js/data.js (campo "id" de cada persona).
+   Recomendado: formato vertical 3:4 (por ejemplo 600 x 800 px).
+
+2. Abre js/data.js y anade el id a la lista FOTOS, al principio del archivo:
+
+       FOTOS: ["augusto-sandino", "ruben-dario"],
+
+Si una persona no esta en FOTOS, se sigue viendo la ilustracion.
