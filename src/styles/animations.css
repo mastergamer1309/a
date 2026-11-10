@@ -7,7 +7,7 @@
 @keyframes breathe { 0%, 100% { transform: scale(.94); opacity: .8; } 50% { transform: scale(1.06); opacity: 1; } }
 @keyframes twinkle { 0%, 100% { opacity: 1; transform: scale(1) rotate(0); } 50% { opacity: .55; transform: scale(.82) rotate(18deg); } }
 @keyframes sunrise { from { transform: translateY(46%); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes chIn { from { opacity: 0; transform: translateY(.55em) scale(.88); filter: blur(12px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes chIn { from { opacity: 0; transform: translateY(.55em) scale(.88); } to { opacity: 1; transform: none; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes dlgIn { from { opacity: 0; transform: translateY(36px) scale(.95); } to { opacity: 1; transform: none; } }

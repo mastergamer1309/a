@@ -31,6 +31,7 @@
   background: repeating-conic-gradient(from 0deg, rgba(255, 214, 140, .13) 0 2.4deg, transparent 2.4deg 8deg);
   -webkit-mask: radial-gradient(circle, #000 0, transparent 52%); mask: radial-gradient(circle, #000 0, transparent 52%);
   animation: spin 200s linear infinite;
+  will-change: transform;
 }
 
 .hero__content { position: relative; z-index: 3; max-width: 62rem; }
@@ -58,5 +59,6 @@
 
 .cue { position: absolute; left: 50%; bottom: 1.6rem; z-index: 4; width: 26px; height: 42px; margin-left: -13px; border: 1.5px solid rgba(251, 227, 160, .55); border-radius: 14px; }
 .cue span { position: absolute; left: 50%; top: 8px; width: 3px; height: 8px; margin-left: -1.5px; border-radius: 2px; background: var(--gold-hi); animation: cue 1.8s ease-in-out infinite; }
-.hero .btn { background: rgba(6, 10, 20, .6); backdrop-filter: blur(8px); }
+/* Fondo opaco en lugar de backdrop-filter: los rayos giran detrás y el desenfoque se recalcularía en cada frame. */
+.hero .btn { background: rgba(6, 10, 20, .78); }
 .hero .btn:hover { background: rgba(227, 185, 90, .22); }

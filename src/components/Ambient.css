@@ -7,7 +7,8 @@
 .spot {
   position: fixed; inset: 0; z-index: 4; pointer-events: none;
   background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 190, 100, .075), transparent 62%);
-  mix-blend-mode: screen;
+  /* sin mix-blend-mode: mezclar toda la página en cada frame es muy costoso */
 }
-.fireflies { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+.fireflies { position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: 0; transition: opacity 1.6s; }
+.fireflies.on { opacity: 1; }
 @media (hover: none) { .spot { display: none; } }
