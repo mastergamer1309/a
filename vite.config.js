@@ -10,6 +10,18 @@ export default defineConfig({
     target: 'es2022',
     cssCodeSplit: true,
     assetsInlineLimit: 0,
+    rolldownOptions: {
+      output: {
+        // Chunks estables para la caché del navegador: editar textos de la
+        // sala no invalida React, y actualizar React no invalida los datos.
+        codeSplitting: {
+          groups: [
+            { name: 'react', test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
+            { name: 'data', test: /[\\/]src[\\/]data[\\/]/ },
+          ],
+        },
+      },
+    },
   },
   test: {
     environment: 'jsdom',
