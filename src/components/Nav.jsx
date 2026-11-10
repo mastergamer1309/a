@@ -13,11 +13,15 @@ const LINKS = [
 /* Secciones observadas; 'entrada' (bienvenida) cuenta como 'inicio'. */
 const SECTIONS = { inicio: 'inicio', entrada: 'inicio', galeria: 'galeria', tiempo: 'tiempo', velas: 'velas' };
 
-export function Nav() {
+/** `sectionsReady`: las secciones bajo la portada se montan después del primer render. */
+export function Nav({ sectionsReady = true }) {
   const [solid, setSolid] = useState(false);
   const [active, setActive] = useState('inicio');
 
-  useFrame(() => setSolid(scrollY > 40));
+  useFrame(() => {
+    const s = scrollY > 40;
+    return () => setSolid(s);
+  });
 
   useEffect(() => {
     const io = new IntersectionObserver(entries => {
@@ -28,7 +32,7 @@ export function Nav() {
       if (el) io.observe(el);
     });
     return () => io.disconnect();
-  }, []);
+  }, [sectionsReady]);
 
   return (
     <nav className={solid ? 'nav solid' : 'nav'} aria-label="Principal">

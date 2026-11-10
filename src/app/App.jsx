@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, startTransition, useEffect, useState } from 'react';
 import { Fireflies, ScrollProgress, Spotlight } from '../components/Ambient.jsx';
 import { Footer } from '../components/Footer.jsx';
 import { Nav } from '../components/Nav.jsx';
@@ -36,23 +36,46 @@ function DialogHost() {
   );
 }
 
+/**
+ * El primer render solo pinta lo visible (portada). El resto de secciones se
+ * monta justo después como transición, que React trocea y puede interrumpir:
+ * así la animación de entrada no compite con un render largo.
+ */
+function useBelowFoldReady() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    startTransition(() => setReady(true));
+  }, []);
+  // Un enlace compartido con #seccion no encontraba el destino al cargar.
+  useEffect(() => {
+    if (!ready || !location.hash) return;
+    document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+  }, [ready]);
+  return ready;
+}
+
 export function App() {
   usePrefetchDialog();
+  const ready = useBelowFoldReady();
   return (
     <>
       <ScrollProgress />
       <Spotlight />
       <Fireflies />
-      <Nav />
+      <Nav sectionsReady={ready} />
       <Hero />
-      <main>
-        <Intro />
-        <Gallery />
-        <Timeline />
-        <Altar />
-      </main>
-      <Footer />
-      <DialogHost />
+      {ready && (
+        <>
+          <main>
+            <Intro />
+            <Gallery />
+            <Timeline />
+            <Altar />
+          </main>
+          <Footer />
+          <DialogHost />
+        </>
+      )}
     </>
   );
 }

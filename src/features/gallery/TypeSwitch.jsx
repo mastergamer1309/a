@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 
 const OPTIONS = [
   { value: 'todos', label: 'Todos' },
@@ -18,13 +18,23 @@ export function TypeSwitch({ value, onChange }) {
     seg.style.setProperty('--w', on.offsetWidth + 'px');
   }, []);
 
-  useLayoutEffect(moveThumb, [value, moveThumb]);
-
-  // El ancho de los botones cambia al redimensionar y al cargar las fuentes.
+  // Al montar no se mide aquí: forzaría un layout síncrono de toda la página.
+  // El ResizeObserver de abajo hace la primera medición cuando el layout ya existe.
+  const mounted = useRef(false);
   useLayoutEffect(() => {
-    addEventListener('resize', moveThumb);
-    document.fonts?.ready.then(moveThumb);
-    return () => removeEventListener('resize', moveThumb);
+    if (mounted.current) moveThumb();
+    mounted.current = true;
+  }, [value, moveThumb]);
+
+  // También cubre el cambio de ancho al redimensionar y al cargar las fuentes.
+  useEffect(() => {
+    // Ancho 0 = la galería aún no se ha maquetado (content-visibility): medir
+    // ahora forzaría su layout completo. Se repite al hacerse visible.
+    const ro = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width > 0) moveThumb();
+    });
+    ro.observe(ref.current);
+    return () => ro.disconnect();
   }, [moveThumb]);
 
   return (

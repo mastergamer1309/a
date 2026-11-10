@@ -3,23 +3,26 @@ import { Reveal } from '../../components/Reveal.jsx';
 import { SectionHeader } from '../../components/SectionHeader.jsx';
 import { TIMELINE } from '../../data/index.js';
 import { useFrame } from '../../hooks/useFrame.js';
+import { useOnScreenRef } from '../../hooks/useOnScreenRef.js';
 import { clamp } from '../../lib/text.js';
 import { TimelineEvent } from './TimelineEvent.jsx';
 import './Timeline.css';
 
 export function Timeline() {
   const ref = useRef(null);
+  const onScreen = useOnScreenRef(ref);
 
   // La línea dorada se rellena a medida que se recorre la sección.
   useFrame(() => {
+    if (!onScreen.current) return;
     const el = ref.current;
     const r = el.getBoundingClientRect();
-    const p = clamp((innerHeight * 0.6 - r.top) / r.height, 0, 1);
-    el.style.setProperty('--p', p.toFixed(4));
+    const p = clamp((innerHeight * 0.6 - r.top) / r.height, 0, 1).toFixed(4);
+    return () => el.style.setProperty('--p', p);
   });
 
   return (
-    <section className="section" id="tiempo">
+    <section className="section section--lazy" id="tiempo">
       <div className="wrap">
         <SectionHeader
           kicker="Quinientos años en una línea"

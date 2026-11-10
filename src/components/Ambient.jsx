@@ -10,7 +10,8 @@ export function ScrollProgress() {
   const ref = useRef(null);
   useFrame(() => {
     const max = document.documentElement.scrollHeight - innerHeight;
-    ref.current.style.setProperty('--sp', max > 0 ? (scrollY / max).toFixed(4) : 0);
+    const sp = max > 0 ? (scrollY / max).toFixed(4) : 0;
+    return () => ref.current.style.setProperty('--sp', sp);
   });
   return <div className="progress" ref={ref} aria-hidden="true" />;
 }
@@ -92,10 +93,17 @@ export function Fireflies() {
       raf = requestAnimationFrame(frame);
     }
 
-    resize();
-    addEventListener('resize', resize);
-    raf = requestAnimationFrame(frame);
+    // Arrancan cuando el navegador queda libre, tras la animación de entrada.
+    const idle = window.requestIdleCallback ?? (cb => setTimeout(cb, 1200));
+    const cancelIdle = window.cancelIdleCallback ?? clearTimeout;
+    const start = idle(() => {
+      resize();
+      addEventListener('resize', resize);
+      canvas.classList.add('on');
+      raf = requestAnimationFrame(frame);
+    }, { timeout: 2500 });
     return () => {
+      cancelIdle(start);
       cancelAnimationFrame(raf);
       removeEventListener('resize', resize);
     };

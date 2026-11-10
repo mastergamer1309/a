@@ -42,17 +42,21 @@ export function Hero() {
   useFrame(() => {
     const sy = scrollY;
     if (reduceMotion || sy >= innerHeight * 1.2) return;
+    const vh = innerHeight;
     const { x: mx, y: my } = pointer.current;
-    layers.current.forEach(el => {
-      if (!el) return;
-      const near = +el.dataset.near;
-      const x = -mx * near * 26;
-      const y = sy * (0.5 - near * 0.45) - my * near * 12;
-      el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
-    });
-    const k = clamp(sy / (innerHeight * 0.7), 0, 1);
-    content.current.style.opacity = (1 - k).toFixed(3);
-    content.current.style.transform = `translateY(${(sy * 0.22).toFixed(1)}px)`;
+    // Solo escrituras: se aplican tras las lecturas del resto de suscriptores.
+    return () => {
+      layers.current.forEach(el => {
+        if (!el) return;
+        const near = +el.dataset.near;
+        const x = -mx * near * 26;
+        const y = sy * (0.5 - near * 0.45) - my * near * 12;
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+      });
+      const k = clamp(sy / (vh * 0.7), 0, 1);
+      content.current.style.opacity = (1 - k).toFixed(3);
+      content.current.style.transform = `translateY(${(sy * 0.22).toFixed(1)}px)`;
+    };
   });
 
   return (

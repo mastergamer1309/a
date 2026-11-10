@@ -55,7 +55,7 @@ export function Gallery() {
     : `Mostrando ${list.length} de ${PEOPLE.length}`;
 
   return (
-    <section className="section" id="galeria" ref={sectionRef}>
+    <section className="section section--lazy" id="galeria" ref={sectionRef}>
       <div className="wrap">
         <SectionHeader kicker="La sala" title="Galería de la Memoria" />
 

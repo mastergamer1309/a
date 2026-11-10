@@ -36,7 +36,7 @@ export function Altar() {
   };
 
   return (
-    <section className="section" id="velas">
+    <section className="section section--lazy" id="velas">
       <div className="wrap narrow">
         <SectionHeader
           kicker="Un gesto de gratitud"

@@ -84,3 +84,7 @@ button { font: inherit; color: inherit; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
   .js .reveal, .tl__card { opacity: 1 !important; transform: none !important; }
 }
+
+/* Secciones largas bajo la portada: el navegador no las maqueta ni pinta
+   hasta que se acercan a la pantalla. `auto` recuerda su tamaño real. */
+.section--lazy { content-visibility: auto; contain-intrinsic-size: auto 1800px; }
