@@ -1,0 +1,37 @@
+.altar {
+  position: relative; margin-top: 3rem; padding: 3.2rem clamp(.6rem, 2vw, 1.6rem) 1.6rem; overflow: hidden;
+  border-radius: 28px; border: 1px solid var(--line);
+  background:
+    radial-gradient(70% 90% at 50% 100%, rgba(255, 154, 61, calc(var(--glow, 0) * .28)), transparent 70%),
+    linear-gradient(180deg, #0e1730, #09101f);
+  transition: background .8s;
+}
+.candles { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 2.2rem .4rem; justify-items: center; }
+.candle { all: unset; cursor: pointer; display: grid; justify-items: center; gap: .65rem; width: 84px; padding-top: 38px; position: relative; -webkit-tap-highlight-color: transparent; }
+.candle:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 4px; border-radius: 10px; }
+.candle__body {
+  position: relative; width: 20px; height: 64px; border-radius: 4px 4px 3px 3px;
+  background: linear-gradient(90deg, #b5a98a, #f6efdc 42%, #b0a383);
+  box-shadow: inset 0 7px 6px -4px rgba(0, 0, 0, .35), 0 8px 12px -6px #000;
+  transition: transform .4s var(--ease);
+}
+.candle:hover .candle__body { transform: translateY(-3px); }
+.candle__body::before { content: ""; position: absolute; left: 50%; top: -7px; width: 2px; height: 8px; margin-left: -1px; background: #2a2118; border-radius: 1px; }
+.candle__body::after {
+  content: ""; position: absolute; left: 50%; bottom: calc(100% + 8px); width: 150px; height: 150px; margin-left: -75px; margin-bottom: -75px;
+  background: radial-gradient(circle, rgba(255, 170, 70, .5), transparent 62%); opacity: 0; transition: opacity .8s; pointer-events: none;
+}
+.cflame {
+  position: absolute; left: 50%; bottom: calc(100% + 1px); width: 15px; height: 28px; margin-left: -7.5px;
+  border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%;
+  background: radial-gradient(ellipse at 50% 82%, #fffbe0 0, #ffd36b 32%, #ff8a2b 68%, rgba(255, 90, 20, 0) 100%);
+  transform-origin: 50% 100%; transform: scale(0); opacity: 0;
+}
+.candle.lit .cflame { opacity: 1; animation: pop .6s var(--ease) both, flame 1.5s ease-in-out .6s infinite alternate; }
+.candle.lit .candle__body::after { opacity: 1; animation: glow 2.4s ease-in-out infinite alternate; }
+.candle__label { font-size: .7rem; letter-spacing: .05em; line-height: 1.25; text-align: center; color: var(--faint); transition: color .5s; max-width: 84px; }
+.candle.lit .candle__label { color: var(--gold-hi); }
+.altar__msg { min-height: 2.2em; margin: 1.8rem 0 0; text-align: center; font: italic 500 1.35rem/1.4 var(--body-serif); color: var(--gold-hi); }
+.altar__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(227, 185, 90, .16); }
+.altar__count { color: var(--dim); font-size: .92rem; }
+.altar__count b { color: var(--gold-hi); font: 600 1.4rem var(--serif); margin-right: .25rem; }

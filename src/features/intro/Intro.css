@@ -1,0 +1,13 @@
+.intro { text-align: center; }
+.intro__text { font: 500 clamp(1.15rem, 2vw, 1.4rem)/1.65 var(--body-serif); color: #e4dccb; max-width: 46rem; margin: 0 auto; }
+.intro__text strong { color: var(--gold-hi); font-weight: 600; }
+
+.stats { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+.stats li {
+  padding: 1.4rem 1rem; border-radius: 18px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .01));
+  transition: transform .5s var(--ease), border-color .4s;
+}
+.stats li:hover { transform: translateY(-5px); border-color: rgba(227, 185, 90, .55); }
+.stats b { display: block; font: 600 clamp(2.2rem, 5vw, 3.2rem)/1 var(--serif); color: var(--gold-hi); text-shadow: 0 0 28px rgba(227, 185, 90, .4); }
+.stats span { display: block; margin-top: .45rem; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
